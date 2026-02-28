@@ -8,14 +8,14 @@
 ╚══════════════════════════════════════════════════════════════╝
 ```
 
-# Olá, eu sou [Seu Nome] 👋
+# Jefferson Vieira 📈  
 ### Especialista em Inteligência em Suprimentos
 
 *Transformando cadeias de suprimentos em vantagens competitivas através de dados, automação e estratégia analítica.*
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/seu-usuario)
-[![Email](https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:seu@email.com)
-[![Portfolio](https://img.shields.io/badge/Portfolio-0a0f1e?style=for-the-badge&logo=github&logoColor=white)](https://seu-usuario.github.io)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/jefferson-wilson-de-castro-vieira-b244b214b)
+[![Email](https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:jefferson.engcivill@gmail.com)
+[![Portfolio](https://img.shields.io/badge/Portfolio-0a0f1e?style=for-the-badge&logo=github&logoColor=white)](https://github.com/jeffersonengcivill)
 
 </div>
 
@@ -29,10 +29,9 @@ Minha atuação abrange desde o diagnóstico de processos até a implantação d
 
 ```python
 supply_expert = {
-    "nome":        "Seu Nome",
+    "nome":        "Jefferson Vieira",
     "localização": "Brasil 🇧🇷",
     "foco":        "Supply Chain Intelligence & Analytics",
-    "experiência": "8+ anos",
     "impacto":     "R$ 120M+ em savings gerados",
     "missão":      "Cadeia de suprimentos inteligente = negócio escalável"
 }
@@ -84,16 +83,9 @@ supply_expert = {
 
 ## 🚀 Projetos em Destaque
 
-### 🔮 [Supply Demand Forecaster](https://github.com/seu-usuario/supply-demand-forecaster)
-> Modelo preditivo de demanda com XGBoost, features sazonais e dados externos.
-> **Resultado:** −42% no erro de previsão (MAPE) versus baseline histórico.
-
-`Python` `XGBoost` `FastAPI` `Docker`
-
----
 
 ### 📊 [Spend Intelligence Dashboard](https://github.com/seu-usuario/spend-intelligence-dashboard)
-> Plataforma analítica de gastos com segmentação Kraljic automatizada e alertas de concentração de fornecedores.
+> Plataforma analítica de gastos  automatizada e alertas de concentração de fornecedores.
 > **Resultado:** Visibilidade de 100% do spend com identificação de oportunidades de consolidação.
 
 `Power BI` `SQL` `Python` `REST API`
@@ -129,28 +121,7 @@ supply_expert = {
 
 ---
 
-## 📈 GitHub Stats
 
-<div align="center">
-
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=seu-usuario&show_icons=true&theme=default&hide_border=true&title_color=e8a020&icon_color=1a7a6e&text_color=0a0f1e&bg_color=f5f0e8)
-
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=seu-usuario&layout=compact&hide_border=true&title_color=e8a020&text_color=0a0f1e&bg_color=f5f0e8)
-
-</div>
-
----
-
-## 🤝 Vamos conversar?
-
-Estou sempre aberto a discutir projetos de **supply chain analytics**, **automação de processos** ou oportunidades de colaboração.
-
-<div align="center">
-
-**📧 seu@email.com** · **💼 linkedin.com/in/seu-usuario** · **🌐 seu-usuario.github.io**
-
----
-
-*"Uma cadeia de suprimentos inteligente é a espinha dorsal de qualquer negócio escalável."*
+*"• Vantagem competitiva se constrói antes da negociação.."*
 
 </div>
