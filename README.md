@@ -39,18 +39,6 @@ supply_expert = {
 
 ---
 
-## 📊 Dashboard de Impacto
-
-| Métrica | Resultado |
-|---|---|
-| 📉 Redução de Custo Total | **−18%** em média por projeto |
-| 📦 Fill Rate Alcançado | **97.4%** de nível de serviço |
-| 🚫 Ruptura de Estoque | **−64%** de stockouts eliminados |
-| 🏭 Projetos Entregues | **40+** projetos de supply chain |
-| 💰 Savings Acumulados | **R$ 120M+** gerados para clientes |
-| 📁 Repositórios Públicos | **34** ferramentas open source |
-
----
 
 ## 🛠️ Stack Técnico
 
