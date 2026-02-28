@@ -1,1 +1,936 @@
-# jeffeng
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Supply Intelligence — GitHub Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@300;400;500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0a0f1e;
+    --paper: #f5f0e8;
+    --amber: #e8a020;
+    --amber-light: #f5c14a;
+    --teal: #1a7a6e;
+    --teal-light: #2aa898;
+    --rust: #c04a2a;
+    --muted: #6b6b6b;
+    --border: rgba(10,15,30,0.12);
+    --card-bg: rgba(255,255,255,0.72);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: 'IBM Plex Mono', monospace;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* grain texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.6;
+  }
+
+  /* === GRID LINES === */
+  .grid-bg {
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(10,15,30,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(10,15,30,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  main { position: relative; z-index: 1; max-width: 1180px; margin: 0 auto; padding: 0 32px 80px; }
+
+  /* === HEADER === */
+  header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: end;
+    padding: 64px 0 48px;
+    border-bottom: 2px solid var(--ink);
+    gap: 32px;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .header-left {}
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--teal);
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+  .badge::before {
+    content: '';
+    width: 28px; height: 2px;
+    background: var(--teal);
+    display: block;
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(42px, 6vw, 72px);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+  }
+  h1 span {
+    display: block;
+    color: var(--amber);
+    -webkit-text-stroke: 0px;
+  }
+
+  .header-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: 4px;
+  }
+
+  .tagline {
+    font-family: 'Lora', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--muted);
+    line-height: 1.7;
+    border-left: 3px solid var(--amber);
+    padding-left: 16px;
+  }
+
+  .header-stats {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .stat-pill {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 2px;
+    background: var(--card-bg);
+    backdrop-filter: blur(4px);
+  }
+  .stat-pill strong { color: var(--teal); }
+
+  /* === ABOUT SECTION === */
+  .section { margin-top: 64px; animation: fadeUp 0.8s ease both; }
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 32px;
+  }
+
+  .about-text {
+    font-family: 'Lora', serif;
+    font-size: 17px;
+    line-height: 1.75;
+    color: #2a2a2a;
+  }
+  .about-text p + p { margin-top: 16px; }
+
+  .expertise-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .exp-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    padding: 10px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 2px;
+    background: var(--card-bg);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .exp-item:hover { border-color: var(--amber); transform: translateX(4px); }
+  .exp-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--amber);
+    flex-shrink: 0;
+  }
+  .exp-dot.teal { background: var(--teal); }
+  .exp-dot.rust { background: var(--rust); }
+
+  /* === DASHBOARD === */
+  .dashboard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 0;
+  }
+
+  .kpi-card {
+    background: var(--card-bg);
+    border: 1.5px solid var(--border);
+    border-radius: 2px;
+    padding: 24px 22px;
+    backdrop-filter: blur(8px);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .kpi-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(10,15,30,0.1); }
+  .kpi-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .kpi-card.amber::after { background: var(--amber); }
+  .kpi-card.teal::after { background: var(--teal); }
+  .kpi-card.rust::after { background: var(--rust); }
+  .kpi-card.dark::after { background: var(--ink); }
+
+  .kpi-label {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .kpi-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 38px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+  }
+  .kpi-card.amber .kpi-value { color: var(--amber); }
+  .kpi-card.teal .kpi-value { color: var(--teal); }
+  .kpi-card.rust .kpi-value { color: var(--rust); }
+  .kpi-sub {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* sparkline bars */
+  .sparkline {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 32px;
+    margin-top: 14px;
+  }
+  .spark-bar {
+    flex: 1;
+    border-radius: 1px;
+    background: currentColor;
+    opacity: 0.25;
+    transition: opacity 0.3s;
+  }
+  .spark-bar.active { opacity: 0.85; }
+  .kpi-card.amber .spark-bar { color: var(--amber); }
+  .kpi-card.teal .spark-bar { color: var(--teal); }
+  .kpi-card.rust .spark-bar { color: var(--rust); }
+  .kpi-card.dark .spark-bar { color: var(--ink); }
+
+  /* === CHART AREA === */
+  .charts-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    margin-top: 0;
+  }
+
+  .chart-card {
+    background: var(--card-bg);
+    border: 1.5px solid var(--border);
+    border-radius: 2px;
+    padding: 28px;
+    backdrop-filter: blur(8px);
+  }
+  .chart-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin-bottom: 4px;
+  }
+  .chart-subtitle {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  /* SVG bar chart */
+  .bar-chart-wrap svg { width: 100%; overflow: visible; }
+  .bar-fill { transition: height 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+
+  /* donut chart */
+  .donut-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .donut-svg { width: 160px; height: 160px; }
+  .donut-legend { width: 100%; }
+  .legend-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 11px;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .legend-row:last-child { border-bottom: none; }
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; margin-right: 8px; display: inline-block; }
+  .legend-label { display: flex; align-items: center; }
+  .legend-pct { font-weight: 600; letter-spacing: 0.05em; }
+
+  /* === PROJECTS === */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .project-card {
+    border: 1.5px solid var(--border);
+    border-radius: 2px;
+    padding: 28px 24px;
+    background: var(--card-bg);
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s, transform 0.25s;
+    cursor: pointer;
+  }
+  .project-card:hover { border-color: var(--ink); transform: translateY(-2px); }
+  .project-card::before {
+    content: attr(data-num);
+    position: absolute;
+    top: -12px; right: 16px;
+    font-family: 'Syne', sans-serif;
+    font-size: 72px;
+    font-weight: 800;
+    color: rgba(10,15,30,0.04);
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  .project-tag {
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border: 1px solid currentColor;
+    border-radius: 1px;
+    margin-bottom: 14px;
+  }
+  .tag-amber { color: var(--amber); }
+  .tag-teal { color: var(--teal); }
+  .tag-rust { color: var(--rust); }
+
+  .project-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+  .project-desc {
+    font-family: 'Lora', serif;
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+  .project-stack {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .stack-tag {
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 7px;
+    background: rgba(10,15,30,0.05);
+    border-radius: 1px;
+  }
+
+  /* === SKILLS HEATMAP === */
+  .skills-map {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+  }
+  .skill-block {
+    padding: 16px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 2px;
+    background: var(--card-bg);
+    position: relative;
+  }
+  .skill-name {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .skill-bar-bg {
+    height: 4px;
+    background: rgba(10,15,30,0.08);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .skill-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    transform-origin: left;
+    animation: barGrow 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: var(--delay, 0s);
+  }
+  @keyframes barGrow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+  .skill-pct {
+    font-size: 9px;
+    color: var(--muted);
+    margin-top: 6px;
+    letter-spacing: 0.1em;
+  }
+
+  /* === GITHUB ACTIVITY === */
+  .activity-strip {
+    display: flex;
+    gap: 3px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+  .act-cell {
+    width: 14px; height: 14px;
+    border-radius: 2px;
+    background: rgba(10,15,30,0.06);
+    transition: background 0.3s;
+  }
+  .act-cell.l1 { background: rgba(26,122,110,0.25); }
+  .act-cell.l2 { background: rgba(26,122,110,0.5); }
+  .act-cell.l3 { background: rgba(26,122,110,0.75); }
+  .act-cell.l4 { background: var(--teal); }
+
+  /* === FOOTER === */
+  footer {
+    border-top: 2px solid var(--ink);
+    margin-top: 80px;
+    padding: 40px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    animation: fadeUp 0.8s ease 0.5s both;
+  }
+  .footer-brand {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+  .social-links { display: flex; gap: 16px; }
+  .social-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .social-links a:hover { color: var(--ink); }
+
+  /* === ANIMATIONS === */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section { animation: fadeUp 0.7s ease both; }
+  .section:nth-child(2) { animation-delay: 0.1s; }
+  .section:nth-child(3) { animation-delay: 0.2s; }
+  .section:nth-child(4) { animation-delay: 0.3s; }
+  .section:nth-child(5) { animation-delay: 0.35s; }
+  .section:nth-child(6) { animation-delay: 0.4s; }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 860px) {
+    header { grid-template-columns: 1fr; }
+    .about-grid { grid-template-columns: 1fr; }
+    .dashboard { grid-template-columns: repeat(2, 1fr); }
+    .charts-row { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 20px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+<main>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-left">
+      <div class="badge">Supply Intelligence Expert</div>
+      <h1>
+        Supply
+        <span>Intelligence</span>
+      </h1>
+    </div>
+    <div class="header-right">
+      <p class="tagline">
+        Transformando cadeias de suprimentos em vantagens competitivas através de dados, inteligência analítica e automação estratégica.
+      </p>
+      <div class="header-stats">
+        <span class="stat-pill"><strong>8+</strong> anos de experiência</span>
+        <span class="stat-pill"><strong>40+</strong> projetos entregues</span>
+        <span class="stat-pill"><strong>R$ 120M+</strong> em savings</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section class="section">
+    <div class="section-label">Sobre</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          Especialista em <strong>Inteligência em Suprimentos</strong> com foco em transformação digital de cadeias logísticas, modelagem preditiva de demanda e otimização de estoque. Combino rigor analítico com visão estratégica para entregar resultados mensuráveis.
+        </p>
+        <p>
+          Minha atuação abrange desde o diagnóstico de processos até a implantação de soluções end-to-end: segmentação de fornecedores, análise de spend, gerenciamento de riscos de supply chain e dashboards executivos para tomada de decisão em tempo real.
+        </p>
+        <p>
+          Apaixonado por resolver problemas complexos de supply chain com tecnologia e dados — acredito que uma cadeia de suprimentos inteligente é a espinha dorsal de qualquer negócio escalável.
+        </p>
+      </div>
+      <div class="expertise-list">
+        <div class="exp-item"><span class="exp-dot"></span> Demand Planning & Forecasting</div>
+        <div class="exp-item"><span class="exp-dot teal"></span> Otimização de Estoque (EOQ, SS)</div>
+        <div class="exp-item"><span class="exp-dot rust"></span> Supplier Intelligence & Segmentação</div>
+        <div class="exp-item"><span class="exp-dot"></span> Spend Analytics & Category Mgmt</div>
+        <div class="exp-item"><span class="exp-dot teal"></span> Risk Management em Supply Chain</div>
+        <div class="exp-item"><span class="exp-dot rust"></span> Automação com Python & SQL</div>
+        <div class="exp-item"><span class="exp-dot"></span> Power BI · Tableau · Metabase</div>
+        <div class="exp-item"><span class="exp-dot teal"></span> S&OP / IBP Process Design</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DASHBOARD KPIs -->
+  <section class="section">
+    <div class="section-label">Dashboard — Resultados & Impacto</div>
+    <div class="dashboard">
+      <div class="kpi-card amber">
+        <div class="kpi-label">Redução de Custo Total</div>
+        <div class="kpi-value">18%</div>
+        <div class="kpi-sub">avg. em projetos de supply</div>
+        <div class="sparkline">
+          <div class="spark-bar" style="height:40%"></div>
+          <div class="spark-bar" style="height:55%"></div>
+          <div class="spark-bar" style="height:48%"></div>
+          <div class="spark-bar" style="height:70%"></div>
+          <div class="spark-bar" style="height:62%"></div>
+          <div class="spark-bar" style="height:85%"></div>
+          <div class="spark-bar active" style="height:100%"></div>
+        </div>
+      </div>
+      <div class="kpi-card teal">
+        <div class="kpi-label">Fill Rate Médio Alcançado</div>
+        <div class="kpi-value">97.4%</div>
+        <div class="kpi-sub">nível de serviço ao cliente</div>
+        <div class="sparkline">
+          <div class="spark-bar" style="height:60%"></div>
+          <div class="spark-bar" style="height:65%"></div>
+          <div class="spark-bar" style="height:72%"></div>
+          <div class="spark-bar" style="height:78%"></div>
+          <div class="spark-bar" style="height:88%"></div>
+          <div class="spark-bar" style="height:94%"></div>
+          <div class="spark-bar active" style="height:100%"></div>
+        </div>
+      </div>
+      <div class="kpi-card rust">
+        <div class="kpi-label">Redução de Ruptura de Estoque</div>
+        <div class="kpi-value">−64%</div>
+        <div class="kpi-sub">stockouts eliminados</div>
+        <div class="sparkline">
+          <div class="spark-bar active" style="height:100%"></div>
+          <div class="spark-bar" style="height:80%"></div>
+          <div class="spark-bar" style="height:68%"></div>
+          <div class="spark-bar" style="height:55%"></div>
+          <div class="spark-bar" style="height:44%"></div>
+          <div class="spark-bar" style="height:36%"></div>
+          <div class="spark-bar" style="height:28%"></div>
+        </div>
+      </div>
+      <div class="kpi-card dark">
+        <div class="kpi-label">Repositórios Públicos</div>
+        <div class="kpi-value">34</div>
+        <div class="kpi-sub">ferramentas & frameworks open</div>
+        <div class="sparkline">
+          <div class="spark-bar" style="height:20%"></div>
+          <div class="spark-bar" style="height:35%"></div>
+          <div class="spark-bar" style="height:30%"></div>
+          <div class="spark-bar" style="height:55%"></div>
+          <div class="spark-bar" style="height:70%"></div>
+          <div class="spark-bar" style="height:85%"></div>
+          <div class="spark-bar active" style="height:100%"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHARTS -->
+  <section class="section">
+    <div class="section-label">Análise Visual</div>
+    <div class="charts-row">
+
+      <!-- Bar Chart -->
+      <div class="chart-card bar-chart-wrap">
+        <div class="chart-title">Impacto por Categoria de Projeto</div>
+        <div class="chart-subtitle">Savings acumulados (R$ milhões) · 2021–2024</div>
+        <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+          <defs>
+            <linearGradient id="gAmber" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#e8a020"/>
+              <stop offset="100%" stop-color="#f5c14a"/>
+            </linearGradient>
+            <linearGradient id="gTeal" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#1a7a6e"/>
+              <stop offset="100%" stop-color="#2aa898"/>
+            </linearGradient>
+            <linearGradient id="gRust" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#c04a2a"/>
+              <stop offset="100%" stop-color="#e06040"/>
+            </linearGradient>
+          </defs>
+          <!-- Grid lines -->
+          <line x1="60" y1="0" x2="60" y2="160" stroke="rgba(10,15,30,0.07)" stroke-width="1"/>
+          <line x1="0" y1="160" x2="560" y2="160" stroke="rgba(10,15,30,0.15)" stroke-width="1.5"/>
+          <line x1="0" y1="120" x2="560" y2="120" stroke="rgba(10,15,30,0.05)" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="0" y1="80" x2="560" y2="80" stroke="rgba(10,15,30,0.05)" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="0" y1="40" x2="560" y2="40" stroke="rgba(10,15,30,0.05)" stroke-width="1" stroke-dasharray="4,4"/>
+
+          <!-- Y labels -->
+          <text x="52" y="164" text-anchor="end" font-family="IBM Plex Mono" font-size="9" fill="#6b6b6b">0</text>
+          <text x="52" y="124" text-anchor="end" font-family="IBM Plex Mono" font-size="9" fill="#6b6b6b">10M</text>
+          <text x="52" y="84" text-anchor="end" font-family="IBM Plex Mono" font-size="9" fill="#6b6b6b">20M</text>
+          <text x="52" y="44" text-anchor="end" font-family="IBM Plex Mono" font-size="9" fill="#6b6b6b">30M</text>
+
+          <!-- Bars group 1: Gestão de Fornecedores -->
+          <rect x="72" y="68" width="30" height="92" fill="url(#gAmber)" rx="1"/>
+          <rect x="72" y="48" width="30" height="112" fill="url(#gAmber)" rx="1" opacity="0" class="bar-fill"/>
+          <rect x="107" y="88" width="30" height="72" fill="url(#gTeal)" rx="1"/>
+          <rect x="142" y="104" width="30" height="56" fill="url(#gRust)" rx="1"/>
+          <text x="107" y="178" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#6b6b6b">Fornecedores</text>
+
+          <!-- Bars group 2: Demand Planning -->
+          <rect x="192" y="56" width="30" height="104" fill="url(#gAmber)" rx="1"/>
+          <rect x="227" y="72" width="30" height="88" fill="url(#gTeal)" rx="1"/>
+          <rect x="262" y="48" width="30" height="112" fill="url(#gRust)" rx="1"/>
+          <text x="227" y="178" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#6b6b6b">Demand Plan.</text>
+
+          <!-- Bars group 3: Estoque -->
+          <rect x="312" y="40" width="30" height="120" fill="url(#gAmber)" rx="1"/>
+          <rect x="347" y="60" width="30" height="100" fill="url(#gTeal)" rx="1"/>
+          <rect x="382" y="80" width="30" height="80" fill="url(#gRust)" rx="1"/>
+          <text x="347" y="178" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#6b6b6b">Estoque</text>
+
+          <!-- Bars group 4: Logistics -->
+          <rect x="432" y="64" width="30" height="96" fill="url(#gAmber)" rx="1"/>
+          <rect x="467" y="52" width="30" height="108" fill="url(#gTeal)" rx="1"/>
+          <rect x="502" y="76" width="30" height="84" fill="url(#gRust)" rx="1"/>
+          <text x="467" y="178" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#6b6b6b">Logística</text>
+
+          <!-- Legend -->
+          <rect x="64" y="190" width="8" height="8" fill="url(#gAmber)" rx="1"/>
+          <text x="76" y="198" font-family="IBM Plex Mono" font-size="9" fill="#6b6b6b">2022</text>
+          <rect x="120" y="190" width="8" height="8" fill="url(#gTeal)" rx="1"/>
+          <text x="132" y="198" font-family="IBM Plex Mono" font-size="9" fill="#6b6b6b">2023</text>
+          <rect x="176" y="190" width="8" height="8" fill="url(#gRust)" rx="1"/>
+          <text x="188" y="198" font-family="IBM Plex Mono" font-size="9" fill="#6b6b6b">2024</text>
+        </svg>
+      </div>
+
+      <!-- Donut Chart -->
+      <div class="chart-card">
+        <div class="chart-title">Mix de Tecnologias</div>
+        <div class="chart-subtitle">Stack técnico principal</div>
+        <div class="donut-wrap">
+          <svg class="donut-svg" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+            <!-- Donut segments via stroke-dasharray trick -->
+            <circle cx="80" cy="80" r="56" fill="none" stroke="rgba(10,15,30,0.06)" stroke-width="22"/>
+            <!-- Python 38% -->
+            <circle cx="80" cy="80" r="56" fill="none" stroke="#e8a020" stroke-width="22"
+              stroke-dasharray="133.5 351.9" stroke-dashoffset="0" transform="rotate(-90 80 80)"/>
+            <!-- SQL 26% -->
+            <circle cx="80" cy="80" r="56" fill="none" stroke="#1a7a6e" stroke-width="22"
+              stroke-dasharray="91.4 351.9" stroke-dashoffset="-133.5" transform="rotate(-90 80 80)"/>
+            <!-- Power BI 20% -->
+            <circle cx="80" cy="80" r="56" fill="none" stroke="#c04a2a" stroke-width="22"
+              stroke-dasharray="70.4 351.9" stroke-dashoffset="-224.9" transform="rotate(-90 80 80)"/>
+            <!-- Excel 16% -->
+            <circle cx="80" cy="80" r="56" fill="none" stroke="#0a0f1e" stroke-width="22"
+              stroke-dasharray="56.3 351.9" stroke-dashoffset="-295.3" transform="rotate(-90 80 80)"/>
+            <!-- Center label -->
+            <text x="80" y="74" text-anchor="middle" font-family="Syne, sans-serif" font-size="22" font-weight="800" fill="#0a0f1e">100%</text>
+            <text x="80" y="90" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" fill="#6b6b6b">TECH MIX</text>
+          </svg>
+          <div class="donut-legend">
+            <div class="legend-row">
+              <span class="legend-label"><span class="legend-dot" style="background:#e8a020"></span>Python / Pandas</span>
+              <span class="legend-pct" style="color:#e8a020">38%</span>
+            </div>
+            <div class="legend-row">
+              <span class="legend-label"><span class="legend-dot" style="background:#1a7a6e"></span>SQL / dbt</span>
+              <span class="legend-pct" style="color:#1a7a6e">26%</span>
+            </div>
+            <div class="legend-row">
+              <span class="legend-label"><span class="legend-dot" style="background:#c04a2a"></span>Power BI</span>
+              <span class="legend-pct" style="color:#c04a2a">20%</span>
+            </div>
+            <div class="legend-row">
+              <span class="legend-label"><span class="legend-dot" style="background:#0a0f1e"></span>Excel / VBA</span>
+              <span class="legend-pct">16%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section">
+    <div class="section-label">Projetos em Destaque</div>
+    <div class="projects-grid">
+
+      <div class="project-card" data-num="01">
+        <span class="project-tag tag-amber">Machine Learning</span>
+        <div class="project-title">Supply Demand Forecaster</div>
+        <div class="project-desc">Modelo preditivo de demanda baseado em XGBoost com features sazonais, promoções e dados externos. Redução de 42% no erro de previsão (MAPE) versus baseline.</div>
+        <div class="project-stack">
+          <span class="stack-tag">Python</span>
+          <span class="stack-tag">XGBoost</span>
+          <span class="stack-tag">FastAPI</span>
+          <span class="stack-tag">Docker</span>
+        </div>
+      </div>
+
+      <div class="project-card" data-num="02">
+        <span class="project-tag tag-teal">Analytics</span>
+        <div class="project-title">Spend Intelligence Dashboard</div>
+        <div class="project-desc">Plataforma analítica de gastos com segmentação Kraljic automatizada, análise de pareto e alertas de concentração de fornecedores. Conectado a ERP via API REST.</div>
+        <div class="project-stack">
+          <span class="stack-tag">Power BI</span>
+          <span class="stack-tag">SQL</span>
+          <span class="stack-tag">Python</span>
+          <span class="stack-tag">REST API</span>
+        </div>
+      </div>
+
+      <div class="project-card" data-num="03">
+        <span class="project-tag tag-rust">Otimização</span>
+        <div class="project-title">Inventory Optimizer</div>
+        <div class="project-desc">Engine de otimização de estoque com cálculo dinâmico de ponto de reposição, estoque de segurança e EOQ por SKU. Integração nativa com SAP e TOTVS.</div>
+        <div class="project-stack">
+          <span class="stack-tag">Python</span>
+          <span class="stack-tag">OR-Tools</span>
+          <span class="stack-tag">SAP API</span>
+          <span class="stack-tag">PostgreSQL</span>
+        </div>
+      </div>
+
+      <div class="project-card" data-num="04">
+        <span class="project-tag tag-amber">Risk Management</span>
+        <div class="project-title">Supplier Risk Monitor</div>
+        <div class="project-desc">Sistema de monitoramento de risco de fornecedores com scoring multicritério, alertas automáticos e mapa de calor por categoria de compra.</div>
+        <div class="project-stack">
+          <span class="stack-tag">Python</span>
+          <span class="stack-tag">Streamlit</span>
+          <span class="stack-tag">SQL</span>
+          <span class="stack-tag">Web Scraping</span>
+        </div>
+      </div>
+
+      <div class="project-card" data-num="05">
+        <span class="project-tag tag-teal">Process Automation</span>
+        <div class="project-title">S&OP Automation Suite</div>
+        <div class="project-desc">Automação do ciclo S&OP com geração de relatórios, consolidação de dados de múltiplas fontes e distribuição automática para stakeholders.</div>
+        <div class="project-stack">
+          <span class="stack-tag">Python</span>
+          <span class="stack-tag">Airflow</span>
+          <span class="stack-tag">Excel Macro</span>
+          <span class="stack-tag">SMTP</span>
+        </div>
+      </div>
+
+      <div class="project-card" data-num="06">
+        <span class="project-tag tag-rust">Data Engineering</span>
+        <div class="project-title">Supply Chain Data Lake</div>
+        <div class="project-desc">Pipeline de dados que ingere, transforma e disponibiliza dados de supply chain de múltiplos ERPs em um repositório centralizado analítico.</div>
+        <div class="project-stack">
+          <span class="stack-tag">dbt</span>
+          <span class="stack-tag">Airflow</span>
+          <span class="stack-tag">BigQuery</span>
+          <span class="stack-tag">Terraform</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section">
+    <div class="section-label">Skills & Proficiência</div>
+    <div class="skills-map">
+      <div class="skill-block">
+        <div class="skill-name">Python / Pandas</div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:95%;background:var(--amber);--delay:0.1s"></div></div>
+        <div class="skill-pct">95%</div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-name">SQL Avançado</div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:92%;background:var(--teal);--delay:0.15s"></div></div>
+        <div class="skill-pct">92%</div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-name">Power BI</div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:90%;background:var(--amber);--delay:0.2s"></div></div>
+        <div class="skill-pct">90%</div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-name">Demand Planning</div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:96%;background:var(--rust);--delay:0.25s"></div></div>
+        <div class="skill-pct">96%</div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-name">Machine Learning</div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:78%;background:var(--teal);--delay:0.3s"></div></div>
+        <div class="skill-pct">78%</div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-name">S&OP / IBP</div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:88%;background:var(--ink);--delay:0.35s"></div></div>
+        <div class="skill-pct">88%</div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-name">Supplier Mgmt</div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:93%;background:var(--amber);--delay:0.4s"></div></div>
+        <div class="skill-pct">93%</div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-name">Logistics KPIs</div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:91%;background:var(--teal);--delay:0.45s"></div></div>
+        <div class="skill-pct">91%</div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-name">dbt / Airflow</div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:72%;background:var(--rust);--delay:0.5s"></div></div>
+        <div class="skill-pct">72%</div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-name">Spend Analytics</div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:94%;background:var(--ink);--delay:0.55s"></div></div>
+        <div class="skill-pct">94%</div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-name">Risk Mgmt</div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:85%;background:var(--amber);--delay:0.6s"></div></div>
+        <div class="skill-pct">85%</div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-name">SAP / TOTVS</div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:80%;background:var(--teal);--delay:0.65s"></div></div>
+        <div class="skill-pct">80%</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GITHUB ACTIVITY -->
+  <section class="section">
+    <div class="section-label">Atividade GitHub — últimos 12 meses</div>
+    <div class="chart-card">
+      <div class="chart-title">Contribution Graph</div>
+      <div class="chart-subtitle">Commits · Pull Requests · Issues · Code Reviews</div>
+      <div class="activity-strip" id="activityStrip"></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      <div class="footer-brand">Supply Intelligence</div>
+      <div style="margin-top:8px;font-size:10px;letter-spacing:0.1em">Construindo o futuro das cadeias de suprimentos — um dado de cada vez.</div>
+    </div>
+    <div class="social-links">
+      <a href="#">GitHub</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Email</a>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+  // Generate activity grid
+  const strip = document.getElementById('activityStrip');
+  const levels = ['', 'l1', 'l2', 'l3', 'l4'];
+  const weights = [0.30, 0.25, 0.22, 0.15, 0.08];
+
+  function weightedRandom() {
+    let r = Math.random(), acc = 0;
+    for (let i = 0; i < weights.length; i++) {
+      acc += weights[i];
+      if (r < acc) return i;
+    }
+    return 0;
+  }
+
+  for (let i = 0; i < 364; i++) {
+    const cell = document.createElement('div');
+    cell.className = 'act-cell ' + levels[weightedRandom()];
+    strip.appendChild(cell);
+  }
+</script>
+</body>
+</html>
