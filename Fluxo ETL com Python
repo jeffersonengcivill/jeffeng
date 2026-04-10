@@ -1,0 +1,119 @@
+Pipeline ETL: Otimização de Processos de Vendas com Dados
+ Sobre o Projeto
+Este projeto demonstra a implementação de um fluxo ETL (Extract, Transform, Load) completo utilizando Python e a biblioteca Pandas. O objetivo é demonstrar como transformar dados de vendas brutos, que muitas vezes chegam de forma desestruturada ou "suja", em informações limpas, padronizadas e prontas para a tomada de decisão.
+
+Embora o exemplo utilize dados de vendas, a estrutura é modular e pode ser facilmente adaptada para outros contextos, como gestão de indicadores de Supply Chain ou otimização de processos logísticos.
+
+ O Problema Resolvido
+Em cenários corporativos reais, os dados extraídos de sistemas muitas vezes apresentam inconsistências. Este script resolve automaticamente os seguintes problemas:
+
+Extração: Coleta automatizada de dados brutos de arquivos CSV.
+
+Transformação:
+
+Remoção de ruídos (como pedidos cancelados que não devem entrar na receita).
+
+Tratamento de valores ausentes (Data e Quantidade).
+
+Criação de métricas de negócio (Cálculo do Valor Total).
+
+Padronização de formatos (Nomes de produtos em maiúsculo e datas formatadas).
+
+Carregamento: Exportação dos dados tratados para um novo arquivo CSV estruturado para consumo em dashboards ou relatórios.
+
+ Ferramentas Utilizadas
+Python 3.x
+
+Pandas: Biblioteca principal para manipulação e tratamento de dados.
+
+Numpy: Utilizado para suporte matemático e tratamento de valores nulos (NaN).
+
+ Como Executar o Script
+Pré-requisitos
+Certifique-se de ter o Python instalado em sua máquina. Para instalar as bibliotecas necessárias, execute:
+
+Bash
+pip install pandas numpy
+Passo a Passo
+Clone este repositório ou faça o download dos arquivos.
+
+Abra o terminal ou prompt de comando na pasta do projeto.
+
+Execute o script principal:
+
+Bash
+python nome_do_seu_arquivo.py
+O script irá gerar dois arquivos na mesma pasta:
+
+vendas_brutas.csv: O arquivo hipotético criado para simular a extração.
+
+vendas_final_processadas.csv: O resultado final do processo ETL.
+
+Código:
+import pandas as pd
+import numpy as np
+import os
+
+# === CONFIGURAÇÃO INICIAL (Criação do arquivo hipotético) ===
+def criar_arquivo_csv():
+    data = {
+        'ID_Pedido': [101, 102, 103, 104, 105, 106],
+        'Data': ['2023-10-01', '2023-10-01', '2023-10-02', '2023-10-02', '2023-10-03', None],
+        'Produto': ['Teclado', 'Mouse', 'Monitor', 'Teclado', 'Mouse', 'Monitor'],
+        'Quantidade': [2, 5, 1, 3, np.nan, 2],
+        'Preco_Unitario': [150.00, 80.00, 1200.00, 150.00, 80.00, 1200.00],
+        'Status': ['Concluído', 'Concluído', 'Pendente', 'Concluído', 'Concluído', 'Cancelado']
+    }
+    df_inicial = pd.DataFrame(data)
+    df_inicial.to_csv('vendas_brutas.csv', index=False)
+    print("✔ Arquivo 'vendas_brutas.csv' criado com sucesso.")
+
+# === ETAPA 1: EXTRACT (Extração) ===
+def extract(caminho_arquivo):
+    print("--- Iniciando Extração ---")
+    df = pd.read_csv(caminho_arquivo)
+    return df
+
+# === ETAPA 2: TRANSFORM (Transformação) ===
+def transform(df):
+    print("--- Iniciando Transformação ---")
+    
+    # 1. Limpeza: Remover pedidos cancelados
+    df = df[df['Status'] != 'Cancelado'].copy()
+    
+    # 2. Tratamento de Nulos: Preencher quantidades vazias com 1
+    df['Quantidade'] = df['Quantidade'].fillna(1)
+    
+    # 3. Tratamento de Datas: Converter para o formato datetime
+    df['Data'] = pd.to_datetime(df['Data']).fillna(pd.Timestamp('2023-10-01'))
+    
+    # 4. Cálculo: Criar coluna de Valor Total (Quantidade * Preço)
+    df['Valor_Total'] = df['Quantidade'] * df['Preco_Unitario']
+    
+    # 5. Padronização: Transformar nomes de produtos para maiúsculas
+    df['Produto'] = df['Produto'].str.upper()
+    
+    return df
+
+# === ETAPA 3: LOAD (Carregamento) ===
+def load(df, destino):
+    print("--- Iniciando Carregamento ---")
+    df.to_csv(destino, index=False)
+    print(f"✔ Dados transformados salvos em: {destino}")
+
+# === EXECUÇÃO DO PIPELINE ===
+if __name__ == "__main__":
+    # Criar o arquivo de exemplo
+    criar_arquivo_csv()
+    
+    # Executar ETL
+    dados_brutos = extract('vendas_brutas.csv')
+    dados_processados = transform(dados_brutos)
+    load(dados_processados, 'vendas_final_processadas.csv')
+    
+    # Mostrar resultado final no console
+    print("\n--- Amostra dos Dados Finais ---")
+    print(dados_processados.head())
+
+Autor: Jefferson Wilson de Castro Vieira
+Supply Chain | Otimização de Processos com Dados
