@@ -1,0 +1,56 @@
+# Dashboard de Vendas no Excel
+
+## Objetivo do projeto
+
+Este projeto foi desenvolvido para o desafio de criação de um dashboard de vendas no Excel. O objetivo é transformar dados brutos em informações visuais claras e úteis, permitindo acompanhar o desempenho de vendas/assinaturas e apoiar a tomada de decisão baseada em dados.
+
+## Dados utilizados
+
+A base utilizada contém registros de assinantes/vendas com os seguintes campos principais:
+
+- ID do assinante e nome do cliente;
+- Plano contratado: Core, Standard ou Ultimate;
+- Data de início;
+- Renovação automática;
+- Tipo de assinatura: mensal, trimestral ou anual;
+- Complementos contratados: EA Play e Minecraft;
+- Valor de cupom/desconto;
+- Receita total da venda.
+
+## Estrutura do arquivo Excel
+
+O arquivo `dashboard_vendas_excel.xlsx` está organizado nas seguintes abas:
+
+- **Dashboard**: painel visual com KPIs e gráficos principais.
+- **Base_Dados**: base tratada utilizada para alimentar os indicadores.
+- **Calculos**: tabelas auxiliares e fórmulas para reprodução dos KPIs.
+- **Instrucoes**: orientações rápidas para uso e atualização do arquivo.
+
+## Indicadores apresentados
+
+O dashboard apresenta:
+
+- Receita total;
+- Total de assinantes/vendas;
+- Ticket médio;
+- Percentual de clientes com renovação automática;
+- Total de descontos concedidos;
+- Receita por plano;
+- Evolução mensal da receita;
+- Receita por tipo de assinatura;
+- Receita dos complementos EA Play e Minecraft.
+
+## Como reproduzir
+
+1. Faça o download ou clone este repositório.
+2. Abra o arquivo `dashboard_vendas_excel.xlsx` no Microsoft Excel.
+3. Consulte a aba `Base_Dados` para visualizar a base utilizada.
+4. Consulte a aba `Calculos` para verificar as fórmulas dos indicadores.
+5. Abra a aba `Dashboard` para analisar o painel final.
+6. Caso queira atualizar a análise, substitua ou acrescente registros na aba `Base_Dados`, mantendo os mesmos cabeçalhos e estrutura.
+
+## Observações
+
+- O arquivo foi construído sem macros.
+- Os cálculos principais foram mantidos em aba separada para facilitar auditoria e reprodução.
+- O dashboard prioriza clareza visual, organização dos dados e leitura gerencial dos resultados.
